@@ -1,0 +1,31 @@
+{
+  "name": "shacheck-redemption",
+  "version": "0.0.1",
+  "description": "macos security via unobtrusive checksum validation",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "security",
+    "macos",
+    "mac"
+  ],
+  "author": "Blake Williams",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "electron": "~1.6.2",
+    "electron-prebuilt-compile": "^1.6.8",
+    "flow-bin": "^0.46.0",
+    "source-map-loader": "^0.2.1"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "react": "^15.5.4",
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.1",
+    "react-dom": "^15.5.4"
+  }
+}
