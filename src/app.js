@@ -2,30 +2,24 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { DragDropContextProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-import crypto from 'crypto'
-import fs from 'fs'
 
 import Drop from './components/drop'
 import appStyles from './app-styles'
+import buildDmg from './lib/dmg'
 
 class App extends React.Component {
   state = {
-    filePath: null,
-    checksum: '',
+    dmg: null,
   }
 
   onDrop(filePath) {
-    const hash = crypto.createHash('sha256')
-    hash.setEncoding('hex')
-
-    fs.readFile(filePath, (err, data) => {
-      const checksum = crypto.createHash('sha256').update(data, 'utf8').digest('hex')
-      this.setState({ filePath, checksum })
-    })
+    buildDmg(filePath).then(dmg => {
+      this.setState({ dmg })
+    });
   }
 
   render() {
-    const { checksum } = this.state
+    const { dmg } = this.state
 
     return (
       <div style={styles.body}>
@@ -33,7 +27,8 @@ class App extends React.Component {
           <Drop onDrop={filePath => this.onDrop(filePath)}/>
         </DragDropContextProvider>
 
-        {this.state.checksum && <p>{this.state.checksum}</p>}
+        {dmg && <p>{dmg.checksum}</p>}
+        {dmg && <p>{dmg.name} - {dmg.version}</p>}
       </div>
     )
   }
